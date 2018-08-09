@@ -1,0 +1,6 @@
+<button mat-button type='button' routerLink='agregar'>Agregar {{ className }}</button>
+<table mat-table [dataSource]="objects" class="mat-elevation-z0">
+  <ng-content></ng-content>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

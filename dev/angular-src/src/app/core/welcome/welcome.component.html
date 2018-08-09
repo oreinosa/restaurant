@@ -1,0 +1,31 @@
+<div class="welcome-header">
+  <div class='welcome-text'>
+    Bienvenidos a El Restaurante
+     Donde se preparan los mejores platos caseros Para ver el delicioso menú de esta semana haz click
+    en
+    <button mat-raised-button type='button' color='primary' routerLink='menu' style='color: white'>Menú de la semana</button>
+  </div>
+</div>
+<div class="my-5"></div>
+<div class="row welcome-features">
+  <div class="col-12 col-md-10 offset-md-1">
+    <div class="row">
+      <div class="feature col-12 col-md-4" *ngFor='let feature of features'>
+        <div class="title">
+          {{feature.title}}
+        </div>
+        <div class="icon">
+          <mat-icon>{{ feature.image }}</mat-icon>
+        </div>
+        <div class="description">
+          {{feature.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="about">
+  <div class="title">
+
+  </div>
+</div>

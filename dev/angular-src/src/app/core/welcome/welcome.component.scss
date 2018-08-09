@@ -1,0 +1,47 @@
+.welcome-header {
+  height: 600px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/assets/images/kitchen.jpg");
+  margin: -15px;
+  .welcome-text {
+    padding-top: 250px;
+    padding-left: 50px;
+    h5 {
+      font-size: 45px;
+      line-height: 45px;
+    }
+    h6 {
+      font-size: 30px;
+      line-height: 30px;
+    }
+  }
+}
+.welcome-features {
+  .feature {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    .title {
+      height: 80px;
+      font-size: 30px;
+      line-height: 30px;
+    }
+    .icon {
+      height: 100px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      .mat-icon {
+        font-size: 100px;
+        line-height: 100px;
+        height: 100px;
+        width: 100px;
+      }
+    }
+    .description {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+}

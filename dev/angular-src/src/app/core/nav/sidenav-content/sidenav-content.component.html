@@ -1,0 +1,16 @@
+<div class="sidenav-content">
+  <mat-nav-list>
+    <a mat-button style="height: 0; position: absolute;"></a>
+    <a *ngFor='let link of links' mat-list-item (click)='navToggle.emit()' [routerLink]='link.route' routerLinkActive='active'>
+      <mat-icon *ngIf='link.icon'>{{ link.icon }}</mat-icon>
+      {{ link.label }}
+    </a>
+    <ng-container *ngIf='overlay === "xs"'>
+      <hr>
+      <a *ngFor='let action of actions' mat-list-item (click)='actionEmitter.emit(action.name)'>
+        <mat-icon *ngIf='action.icon'>{{ action.icon }}</mat-icon>
+        {{ action.label }}
+      </a>
+    </ng-container>
+  </mat-nav-list>
+</div>
