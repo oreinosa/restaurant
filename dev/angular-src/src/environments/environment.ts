@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'localhost/api/',
-  static: 'localhost/static'
+  api: 'http://localhost/api/v1/',
+  static: 'http://localhost/static'
 };
 
 /*

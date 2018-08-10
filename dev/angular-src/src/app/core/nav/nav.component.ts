@@ -54,8 +54,8 @@ export class NavComponent {
         }
         return layout;
       }),
-      // tap(layout => console.log(layout))
-    );
+    // tap(layout => console.log(layout))
+  );
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -99,7 +99,7 @@ export class NavComponent {
         break;
       default:
         this.router.navigate([action]);
-        break;
+        return;
     }
     const event = this.dialog.open(component, {
       width: "350px"
@@ -124,16 +124,12 @@ export class NavComponent {
     const actions: any[] = [];
     switch (role) {
       case "Admin":
-        actions.push({ label: "Admin", route: "admin", icon: "build" });
-        actions.push({ label: "Órdenes", route: "ordenes", icon: "build" });
+        links.push({ label: "Admin", route: "admin", icon: "build" });
+        links.push({ label: "Órdenes", route: "ordenes", icon: "assignment_pending" });
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
-        links.push({
-          label: "Mis órdenes",
-          route: "mis-ordenes",
-          icon: "assignment"
-        });
         actions.push(
+          { label: "Mis órdenes", route: "mis-ordenes", icon: "assignment" },
           { label: "Perfil", name: "perfil", icon: "person" },
           { label: "Cerrar sesión", name: "cerrar-sesion", icon: "exit_to_app" }
         );
@@ -144,6 +140,7 @@ export class NavComponent {
           { label: "Registrarse", name: "registrarse", icon: "person_add" }
         );
     }
+    this.links = links;
     this.actions = actions;
   }
 }

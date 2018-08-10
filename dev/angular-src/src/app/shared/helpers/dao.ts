@@ -13,9 +13,10 @@ export abstract class DAO<T> {
   constructor(
     private http: HttpClient,
     public className: string,
-    public collectionName: string
+    public collectionName: string,
+    api: string
   ) {
-    this.api += collectionName.toLowerCase() + "/";
+    this.api += api + "/";
   }
 
   getSelectedObject(): Observable<T> {
