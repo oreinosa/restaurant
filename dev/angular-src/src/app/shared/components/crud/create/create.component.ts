@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: "app-crud-create",
+  templateUrl: "./create.component.html",
+  styleUrls: ["./create.component.scss"]
 })
 export class CreateComponent implements OnInit {
+  @Input()
+  className: string;
+  @Input()
+  templateRef;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

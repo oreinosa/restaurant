@@ -8,7 +8,10 @@ import { Category } from "../../../shared/models/category";
 @Component({
   selector: "app-delete",
   templateUrl: "./delete.component.html",
-  styleUrls: ["./delete.component.scss"]
+  styleUrls: [
+    "./delete.component.scss",
+    "../../../shared/styles/crud-delete.scss"
+  ]
 })
 export class DeleteComponent extends Delete<Category> {
   constructor(

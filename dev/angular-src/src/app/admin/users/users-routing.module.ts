@@ -8,11 +8,11 @@ import { UsersComponent } from './users.component';
 const routes: Routes = [
   {
     path: '', component: UsersComponent, children: [
-      { path: 'add', component: CreateComponent },
-      { path: 'update', component: UpdateComponent },
-      { path: 'update/:_id', component: UpdateComponent },
-      { path: 'delete', component: DeleteComponent },
-      { path: 'delete/:_id', component: DeleteComponent },
+      { path: 'agregar', component: CreateComponent },
+      { path: 'actualizar', component: UpdateComponent },
+      { path: 'actualizar/:_id', component: UpdateComponent },
+      { path: 'eliminar', component: DeleteComponent },
+      { path: 'eliminar/:_id', component: DeleteComponent },
     ]
   },
 ];

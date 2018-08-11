@@ -1,13 +1,25 @@
-import { AdminComponent } from './admin.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from "./admin.component";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: 'admin', component: AdminComponent, children: [
-      { path: 'users', loadChildren: './users/users.module#UsersModule' },
-      { path: 'categories', loadChildren: './categories/categories.module#CategoriesModule' },
-      { path: '', pathMatch: 'full', redirectTo: 'users' }
+    path: "admin",
+    component: AdminComponent,
+    children: [
+      {
+        path: "usuarios",
+        loadChildren: "./users/users.module#UsersModule"
+      },
+      {
+        path: "categorias",
+        loadChildren: "./categories/categories.module#CategoriesModule"
+      },
+      {
+        path: "productos",
+        loadChildren: "./products/products.module#ProductsModule"
+      },
+      { path: "", pathMatch: "full", redirectTo: "usuarios" }
     ]
   }
 ];
@@ -16,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

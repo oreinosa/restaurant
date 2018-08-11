@@ -7,6 +7,6 @@ import { DAO } from "../../shared/helpers/dao";
 })
 export class UsersService extends DAO<User> {
   constructor(httpClient: HttpClient) {
-    super(httpClient, "Usuario", "Usuarios", "users");
+    super(httpClient, "Usuario", "Usuarios", "usuarios");
   }
 }

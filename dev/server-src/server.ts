@@ -75,10 +75,10 @@ class Server {
 
   // application routes
   public routes(): void {
-    this.app.use("/api/v1/users", UserRouter.default);
+    this.app.use("/api/v1/usuarios", UserRouter.default);
     this.app.use("/api/v1/auth", AuthRouter.default);
-    this.app.use("/api/v1/products", ProductRouter.default);
-    this.app.use("/api/v1/categories", CategoryRouter.default);
+    this.app.use("/api/v1/productos", ProductRouter.default);
+    this.app.use("/api/v1/categorias", CategoryRouter.default);
     this.app.use("/api/v1/combos", ComboRouter.default);
     this.app.use("/api/v1/receipt", ReceiptRouter.default);
     this.app.use("/api/v1/upload", UploadRouter.default);

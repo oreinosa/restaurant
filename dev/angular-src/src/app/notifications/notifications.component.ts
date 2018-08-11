@@ -27,7 +27,7 @@ export class NotificationsComponent implements OnInit {
         // console.log(this.notifications);
         this.notifications.push(notification);
         setTimeout(() => {
-          var index = this.notifications.indexOf(notification);
+          const index = this.notifications.indexOf(notification);
           this.notifications.splice(index, 1);
         }, timeout);
       });
@@ -40,7 +40,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   onDismiss(notification: Notification) {
-    var index = this.notifications.indexOf(notification);
+    const index = this.notifications.indexOf(notification);
     // console.log(index);
     this.notifications.splice(index, 1);
   }

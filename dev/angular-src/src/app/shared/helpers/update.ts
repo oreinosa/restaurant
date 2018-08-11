@@ -51,7 +51,7 @@ export class Update<T> implements OnInit, OnDestroy {
     this.service.update(this._id, object).subscribe(
       (editedObject: T) => {
         this.notifications.show(
-          `${this.service.className} actualizado (ID: ${editedObject["_id"]}`,
+          `${this.service.className} actualizado`,
           this.service.collectionName,
           "success"
         );

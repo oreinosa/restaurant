@@ -32,6 +32,7 @@ import { CreateComponent } from "./components/crud/create/create.component";
 import { ListComponent } from "./components/crud/list/list.component";
 import { UpdateComponent } from "./components/crud/update/update.component";
 import { DeleteComponent } from "./components/crud/delete/delete.component";
+import { ShowImagePipe } from './pipes/show-image.pipe';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { DeleteComponent } from "./components/crud/delete/delete.component";
   exports: [
     CommonModule,
     CapitalizePipe,
+    ShowImagePipe,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
@@ -102,7 +104,8 @@ import { DeleteComponent } from "./components/crud/delete/delete.component";
     CreateComponent,
     ListComponent,
     UpdateComponent,
-    DeleteComponent
+    DeleteComponent,
+    ShowImagePipe
   ]
 })
 export class SharedModule {}

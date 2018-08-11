@@ -21,6 +21,7 @@ export class LogoutComponent implements OnInit {
 
   onSubmit() {
     this.auth.signOut();
+    this.notifications.show("Adiós!");
     this.dialogRef.close(true);
   }
 

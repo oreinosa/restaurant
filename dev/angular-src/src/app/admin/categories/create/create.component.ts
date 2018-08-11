@@ -7,7 +7,10 @@ import { Create } from "../../../shared/helpers/create";
 @Component({
   selector: "app-create",
   templateUrl: "./create.component.html",
-  styleUrls: ["./create.component.scss"]
+  styleUrls: [
+    "./create.component.scss",
+    "../../../shared/styles/crud-create.scss"
+  ]
 })
 export class CreateComponent extends Create<Category> {
   category = new Category();

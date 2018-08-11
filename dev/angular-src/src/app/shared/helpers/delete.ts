@@ -41,7 +41,7 @@ export class Delete<T> implements OnInit, OnDestroy {
     this.service.delete(this._id).subscribe(
       () => {
         this.notifications.show(
-          `Deleted ${this.service.className} successfully`,
+          `${this.service.className} eliminado`,
           this.service.collectionName,
           "success"
         );

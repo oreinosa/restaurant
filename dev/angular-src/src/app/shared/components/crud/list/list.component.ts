@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, TemplateRef } from "@angular/core";
 
 @Component({
   selector: "app-crud-list",
@@ -7,13 +7,15 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ListComponent implements OnInit {
   @Input()
-  displayedColumns: string;
-  @Input()
   className: string;
   @Input()
   objects: any[];
+  @Input()
+  templateRef;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // console.log(this.templateRef);
+  }
 }

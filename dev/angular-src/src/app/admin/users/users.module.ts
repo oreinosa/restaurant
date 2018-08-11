@@ -7,7 +7,6 @@ import { UsersComponent } from "./users.component";
 import { CreateComponent } from "./create/create.component";
 import { UpdateComponent } from "./update/update.component";
 import { DeleteComponent } from "./delete/delete.component";
-import { ListComponent } from "./list/list.component";
 
 @NgModule({
   imports: [SharedModule, UsersRoutingModule],
@@ -15,8 +14,7 @@ import { ListComponent } from "./list/list.component";
     UsersComponent,
     CreateComponent,
     UpdateComponent,
-    DeleteComponent,
-    ListComponent
+    DeleteComponent
   ],
   providers: [UsersService]
 })

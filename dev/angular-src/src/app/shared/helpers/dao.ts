@@ -14,9 +14,9 @@ export abstract class DAO<T> {
     private http: HttpClient,
     public className: string,
     public collectionName: string,
-    api: string
+    public apiRoute: string
   ) {
-    this.api += api + "/";
+    this.api += apiRoute + "/";
   }
 
   getSelectedObject(): Observable<T> {
