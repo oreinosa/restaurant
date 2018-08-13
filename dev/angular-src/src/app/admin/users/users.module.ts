@@ -1,4 +1,3 @@
-import { UsersService } from "./users.service";
 import { NgModule } from "@angular/core";
 import { SharedModule } from "../../shared/shared.module";
 
@@ -15,7 +14,6 @@ import { DeleteComponent } from "./delete/delete.component";
     CreateComponent,
     UpdateComponent,
     DeleteComponent
-  ],
-  providers: [UsersService]
+  ]
 })
 export class UsersModule {}

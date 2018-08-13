@@ -2,7 +2,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { Upload } from "../../upload/upload";
 
 export abstract class DAO<T> {
   private api: string = environment.api;

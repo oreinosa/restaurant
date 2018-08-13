@@ -2,7 +2,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { User } from "./../shared/models/user";
+import { User } from "../shared/models/user";
 import { Login } from "../shared/models/login";
 import { Register } from "../shared/models/register";
 import { JwtHelperService } from "@auth0/angular-jwt";

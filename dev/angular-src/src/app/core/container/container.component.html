@@ -4,7 +4,7 @@
       <span style='text-align: center;'>Menu</span>
     </mat-toolbar>
     <app-avatar [user]='user' *ngIf='user'></app-avatar>
-    <app-sidenav-content [actions]='actions' [links]='links' (action)='onAction($event);drawer.close()' [overlay]='overlay$ | async'></app-sidenav-content>
+    <app-sidenav-content [user]='user' [actions]='actions' [links]='links' (action)='onAction($event);drawer.close()' (toggleNav)='drawer.close()' [overlay]='overlay$ | async'></app-sidenav-content>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-toolbar [user]='user' [actions]='actions' [links]='links' [appName]='appName' [overlay]='overlay$ | async' (toggleNav)='drawer.toggle()'

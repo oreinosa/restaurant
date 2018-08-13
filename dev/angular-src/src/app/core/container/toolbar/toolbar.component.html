@@ -20,7 +20,7 @@
         <mat-icon *ngIf='action.icon'>{{ action.icon }}</mat-icon>
         <ng-container *ngIf='!(overlay === "sm" || overlay === "md")'>{{ action.label }}</ng-container>
       </a>
-      <button mat-button matTooltip='Cerrar sesión' (click)='actionEmitter.emit("cerrar-sesion")' *ngIf='user'>
+      <button mat-icon-button matTooltip='Cerrar sesión' matTooltipPosition='below' (click)='actionEmitter.emit("cerrar-sesion")' *ngIf='user'>
         <mat-icon>exit_to_app</mat-icon>
       </button>
     </ng-container>

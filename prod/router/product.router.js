@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var passport_1 = require("../config/passport");
 var product_model_1 = require("../models/product.model");
+var upload_router_1 = require("../router/upload.router");
 var ProductRouter = (function () {
     function ProductRouter() {
         this.router = express_1.Router();
@@ -72,7 +73,8 @@ var ProductRouter = (function () {
     ProductRouter.prototype.delete = function (req, res) {
         var _id = req.params._id;
         product_model_1.Product.findByIdAndRemove(_id)
-            .then(function () {
+            .then(function (product) {
+            console.log(upload_router_1.removeFile(product.imageURL));
             res.status(204).end();
         })
             .catch(function (error) {

@@ -19,11 +19,11 @@ const BREAKPOINTS = {
 };
 
 @Component({
-  selector: "app-nav",
-  templateUrl: "./nav.component.html",
-  styleUrls: ["./nav.component.scss"]
+  selector: "app-container",
+  templateUrl: "./container.component.html",
+  styleUrls: ["./container.component.scss"]
 })
-export class NavComponent {
+export class ContainerComponent {
   appName = "Restaurante App";
   user: User;
   links: any[];
@@ -53,9 +53,9 @@ export class NavComponent {
           layout = "xs";
         }
         return layout;
-      }),
-    // tap(layout => console.log(layout))
-  );
+      })
+      // tap(layout => console.log(layout))
+    );
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -74,9 +74,8 @@ export class NavComponent {
 
     this.auth.user
       .pipe(
-        take(1),
-        filter(user => !!user),
-        tap((user: User) => this.updateRouting(user.role))
+        // filter(user => !!user),
+        tap((user: User) => this.updateRouting(user ? user.role : "not-signed-in"))
       )
       .subscribe(user => (this.user = user));
   }
@@ -104,15 +103,15 @@ export class NavComponent {
     const event = this.dialog.open(component, {
       width: "350px"
     });
-    event.afterClosed().subscribe(result => {
-      if (result) {
-        let role = "not-logged-in";
-        if (result.user) {
-          role = result.user.role;
-        }
-        this.updateRouting(role);
-      }
-    });
+    // event.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     let role = "not-logged-in";
+    //     if (result.user) {
+    //       role = result.user.role;
+    //     }
+    //     this.updateRouting(role);
+    //   }
+    // });
   }
 
   private updateRouting(role: string) {
@@ -125,12 +124,16 @@ export class NavComponent {
     switch (role) {
       case "Admin":
         links.push({ label: "Admin", route: "admin", icon: "build" });
-        links.push({ label: "Órdenes", route: "ordenes", icon: "assignment_late" });
+        links.push({
+          label: "Órdenes",
+          route: "ordenes",
+          icon: "assignment_late"
+        });
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
         actions.push(
           { label: "Mis órdenes", route: "mis-ordenes", icon: "shopping_cart" },
-          { label: "Perfil", name: "perfil", icon: "person" },
+          { label: "Perfil", name: "perfil", icon: "person" }
         );
         break;
       default:

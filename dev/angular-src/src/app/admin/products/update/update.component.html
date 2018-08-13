@@ -9,7 +9,6 @@
       <ng-container *ngIf='object as product;else loadingObject'>
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-4 offset-lg-1">
-            <input type="text" placeholder='Image URL' [(ngModel)]='product.imageURL' name='imageURL' required class='d-none'>
             <mat-form-field>
               <input matInput type="text" placeholder='Nombre' [ngModel]='product.name' name='name' required [readonly]='f.submitted'>
             </mat-form-field>

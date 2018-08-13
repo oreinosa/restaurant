@@ -6,7 +6,7 @@ import { DAO } from "./dao";
 import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
 
 export class List<T> implements OnInit, OnDestroy {
-  private ngUnsubscribe = new Subject();
+  public ngUnsubscribe = new Subject();
   public objects: T[];
   public dataSource: MatTableDataSource<T> = new MatTableDataSource<T>();
 

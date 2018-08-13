@@ -5,6 +5,17 @@ import * as path from "path";
 import * as fs from "fs";
 import * as uuid from "uuid";
 
+export function removeFile(filePath: string): string {
+  const checkPath = path.join(__dirname, "../static/", filePath);
+  const flag = fs.existsSync(checkPath);
+  if (!flag) {
+    return "File not found";
+  } else {
+    fs.unlinkSync(checkPath);
+    return "File deleted";
+  }
+}
+
 class UploadRouter {
   public router: Router;
 
@@ -14,8 +25,8 @@ class UploadRouter {
   }
 
   public uploadFile(req: Request, res: Response, next: NextFunction): void {
-    const { route, oldFilePath } = req.body;
-    const file = req.files.image as fileUpload.UploadedFile; // get only file sent
+    const { route } = req.body;
+    const file = req.files.uploadedFile as fileUpload.UploadedFile; // get only file sent
 
     if (!file) {
       res.status(400).send("No files were uploaded");
@@ -23,10 +34,8 @@ class UploadRouter {
       // get static folder + route sent from user + file name
       const savePath = path.join(__dirname, "../static/", route, "/");
       // console.log(file);
-
       // CHECK IF FOLDER EXISTS
       const flag = fs.existsSync(savePath);
-      console.log(flag);
       // IF IT DOESN'T IT'LL BE CREATED
       if (!flag) {
         console.log("creating folder ", route);
@@ -42,39 +51,46 @@ class UploadRouter {
       // FILE IS SAVED
       file.mv(savePath + fileName, (err: any) => {
         if (err) return res.status(500).send(err);
-        if (oldFilePath) {
-          // console.log('next : deleteFile');
-          req.body.filePath = filePath;
-          next();
-        } else {
-          res.status(200).json({ data: filePath });
-        }
+        res.status(200).json({ data: filePath });
       });
     }
   }
 
-  public deleteFile(req: Request, res: Response, next: NextFunction): void {
-    const { route, fileName } = req.params;
-    let { oldFilePath, filePath } = req.body;
-    if (route && fileName) {
-      oldFilePath = `/${route}/${fileName}`;
-    }
-    const checkPath = path.join(__dirname, "../../static/", oldFilePath);
-    const flag = fs.existsSync(checkPath);
-    // console.log('checking for ', checkPath);
-    // console.log('exists ? ', flag);
-    const data = filePath
-      ? filePath
-      : flag
-        ? "File deleted"
-        : "There weren't any files to delete";
-    if (!flag) {
-      res.status(200).json({ data });
+  public updateFile(req: Request, res: Response, next: NextFunction): void {
+    const { filePath } = req.body;
+    const file = req.files.uploadedFile as fileUpload.UploadedFile; // get only file sent
+    if (!filePath) {
+      res.status(400).send("Missing parameters");
+    } else if (!file) {
+      res.status(400).send("No files were uploaded");
     } else {
-      fs.unlink(checkPath, err => {
-        if (err) return res.status(500).send(err);
-        // console.log(`${checkPath} was deleted`);
-        res.status(200).json({ data });
+      // get static folder + route sent from user + file name
+      const savePath = path.join(__dirname, "../static/", filePath);
+      // console.log(file);
+      // CHECK IF FOLDER EXISTS
+      const flag = fs.existsSync(savePath);
+      // IF IT DOESN'T IT'LL BE CREATED
+      if (!flag) {
+        res.status(400).send("File not found");
+      } else {
+        file.mv(savePath, (err: any) => {
+          if (err) res.status(500).send(err);
+          res.status(204).json();
+        });
+      }
+    }
+  }
+
+  public deleteFile(req: Request, res: Response, next: NextFunction): void {
+    const { filePath } = req.params;
+    const checkPath = path.join(__dirname, "../static/", filePath);
+    const flag = fs.existsSync(checkPath);
+    if (!flag) {
+      res.status(400).send("File not found");
+    } else {
+      fs.unlink(checkPath, (err: any) => {
+        if (err) res.status(500).send(err);
+        res.status(204).json();
       });
     }
   }
@@ -83,8 +99,8 @@ class UploadRouter {
   public routes() {
     const requireLogin = passport.authenticate("auth", { session: false });
     this.router.post("/", requireLogin, this.uploadFile);
-    this.router.put("/", requireLogin, this.uploadFile, this.deleteFile);
-    this.router.delete("/:route/:fileName", requireLogin, this.deleteFile);
+    this.router.put("/", requireLogin, this.updateFile);
+    this.router.delete("/", requireLogin, this.deleteFile);
   }
 }
 

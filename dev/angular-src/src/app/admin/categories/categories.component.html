@@ -9,7 +9,7 @@
   </mat-card-header>
   <mat-card-content>
     <button mat-button type='button' routerLink='agregar'>Agregar {{ service.className | lowercase }}</button>
-    <table mat-table matSort [dataSource]="objects" class="mat-elevation-z0">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z0">
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">

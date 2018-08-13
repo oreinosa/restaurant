@@ -1,12 +1,6 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpRequest,
-  HttpEventType,
-  HttpResponse
-} from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { map } from "rxjs/operators";
 
@@ -16,10 +10,13 @@ import { map } from "rxjs/operators";
 export class UploadService {
   private api = environment.api + "upload/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  uploadFile(route: string, fileName: string, file: File): Observable<string> {
-    const formData: FormData = this.prepareUpload(route, fileName, file);
+  uploadFile(route: string, file: File): Observable<string> {
+    const formData: FormData = new FormData();
+    formData.append("uploadedFile", file, "upload");
+    formData.append("route", route);
+
     return this.http.post<any>(this.api, formData).pipe(
       map(res => {
         return res.data as string;
@@ -27,30 +24,21 @@ export class UploadService {
     );
   }
 
-  editFile(route: string, fileName: string, file: File, oldFilePath: string): Observable<string> {
-    const formData: FormData = this.prepareUpload(route, fileName, file);
-    formData.append('oldFilePath', oldFilePath);
-    return this.http.put<any>(this.api, formData).pipe(
-      map(res => {
-        return res.data as string;
-      })
-    );
-  }
-
-  deleteFile(oldFilePath: string) {
-    return this.http.delete<any>(this.api + oldFilePath).pipe(
-      map(res => {
-        return res.data as string;
-      })
-    );
-  }
-
-  prepareUpload(route: string, fileName: string, file: File): FormData {
+  editFile(filePath: string, file: File): Observable<string> {
     const formData: FormData = new FormData();
-    fileName = fileName.replace(/\s+/g, "-");
-    formData.append("image", file, fileName);
-    formData.append("route", route);
-    return formData;
+    formData.append("uploadedFile", file, "upload");
+    formData.append("filePath", filePath);
+    return this.http.put<any>(this.api, formData);
+  }
+
+  deleteFile(filePath: string) {
+    const params: HttpParams = new HttpParams();
+    params.append("filePath", filePath);
+    return this.http.delete<any>(this.api, { params }).pipe(
+      map(res => {
+        return res.data as string;
+      })
+    );
   }
 
   // uploadFile(route: string, fileName: string, file: File): Observable<any> {

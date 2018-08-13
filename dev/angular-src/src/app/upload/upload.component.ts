@@ -1,7 +1,6 @@
-import { environment } from './../../environments/environment';
+import { environment } from "../../environments/environment";
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { UploadService } from "./upload.service";
-import { Upload } from "./upload";
 import { of, Observable } from "rxjs";
 
 @Component({
@@ -10,23 +9,30 @@ import { of, Observable } from "rxjs";
   styleUrls: ["./upload.component.scss"]
 })
 export class UploadComponent implements OnInit {
-  @Input() fileURL: string;
+  @Input()
+  fileURL: string;
   originalFileURL: string;
-  @Input() types = ".png,.jpeg,.jpg";
-  @Input() hint = 'Selecciona o arrastra un archivo acá';
+  @Input()
+  types = ".png,.jpeg,.jpg";
+  @Input()
+  hint = "Selecciona o arrastra un archivo acá";
   // 'Select/Drag a file here!';
-  @ViewChild("file") fileInput;
+  @ViewChild("file")
+  fileInput;
   type: string;
   file: File;
-  mode = 'new';
+  mode = "new";
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService) {}
 
   ngOnInit() {
     if (this.fileURL) {
-      this.mode = 'edit';
+      this.mode = "edit";
       this.originalFileURL = this.fileURL;
-      this.originalFileURL = this.originalFileURL.replace(environment.static, '');
+      this.originalFileURL = this.originalFileURL.replace(
+        environment.static,
+        ""
+      );
     }
     if (this.types.search(/(jpg|png|jpeg)/)) {
       this.type = "image";
@@ -62,7 +68,7 @@ export class UploadComponent implements OnInit {
       // Use DataTransferItemList interface to access the file(s)
       for (let i = 0; i < ev.dataTransfer.items.length; i++) {
         // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[i].kind === 'file') {
+        if (ev.dataTransfer.items[i].kind === "file") {
           this.file = ev.dataTransfer.items[i].getAsFile();
           // console.log('... file[' + i + '].name = ' + file.name);
         }
@@ -95,22 +101,14 @@ export class UploadComponent implements OnInit {
     event.preventDefault();
   }
 
-  onSubmit(fileRoute: string, fileName: string): Observable<string> {
+  onSubmit(fileRoute?: string): Observable<string> {
     // console.log(this.file);
-    const type = this.file.type;
-    const fileTypeIndex = type.indexOf("/") + 1;
-    fileName += "." + type.substring(fileTypeIndex);
-    fileName = fileName.toLowerCase();
     // console.log('submitting ', this.mode);
-    if (this.mode === 'new') {
-      return this.uploadService.uploadFile(fileRoute, fileName, this.file);
-    } else if (this.mode === "edit") {
-      if (this.originalFileURL === this.fileURL) {
-        // console.log('file did not change');
-        return of(this.fileURL);
-      } else {
-        return this.uploadService.editFile(fileRoute, fileName, this.file, this.originalFileURL);
-      }
+    if (this.mode === "new") {
+      return this.uploadService.uploadFile(fileRoute, this.file);
+    } else if (this.mode === "edit" && this.file) {
+      return this.uploadService.editFile(this.originalFileURL, this.file);
     }
+    return of(null);
   }
 }

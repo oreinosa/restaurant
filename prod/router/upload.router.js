@@ -5,21 +5,32 @@ var passport_1 = require("../config/passport");
 var path = require("path");
 var fs = require("fs");
 var uuid = require("uuid");
+function removeFile(filePath) {
+    var checkPath = path.join(__dirname, "../static/", filePath);
+    var flag = fs.existsSync(checkPath);
+    if (!flag) {
+        return "File not found";
+    }
+    else {
+        fs.unlinkSync(checkPath);
+        return "File deleted";
+    }
+}
+exports.removeFile = removeFile;
 var UploadRouter = (function () {
     function UploadRouter() {
         this.router = express_1.Router();
         this.routes();
     }
     UploadRouter.prototype.uploadFile = function (req, res, next) {
-        var _a = req.body, route = _a.route, oldFilePath = _a.oldFilePath;
-        var file = req.files.image;
+        var route = req.body.route;
+        var file = req.files.uploadedFile;
         if (!file) {
             res.status(400).send("No files were uploaded");
         }
         else {
             var savePath = path.join(__dirname, "../static/", route, "/");
             var flag = fs.existsSync(savePath);
-            console.log(flag);
             if (!flag) {
                 console.log("creating folder ", route);
                 fs.mkdirSync(savePath);
@@ -32,45 +43,54 @@ var UploadRouter = (function () {
             file.mv(savePath + fileName, function (err) {
                 if (err)
                     return res.status(500).send(err);
-                if (oldFilePath) {
-                    req.body.filePath = filePath_1;
-                    next();
-                }
-                else {
-                    res.status(200).json({ data: filePath_1 });
-                }
+                res.status(200).json({ data: filePath_1 });
             });
         }
     };
-    UploadRouter.prototype.deleteFile = function (req, res, next) {
-        var _a = req.params, route = _a.route, fileName = _a.fileName;
-        var _b = req.body, oldFilePath = _b.oldFilePath, filePath = _b.filePath;
-        if (route && fileName) {
-            oldFilePath = "/" + route + "/" + fileName;
+    UploadRouter.prototype.updateFile = function (req, res, next) {
+        var filePath = req.body.filePath;
+        var file = req.files.uploadedFile;
+        if (!filePath) {
+            res.status(400).send("Missing parameters");
         }
-        var checkPath = path.join(__dirname, "../../static/", oldFilePath);
+        else if (!file) {
+            res.status(400).send("No files were uploaded");
+        }
+        else {
+            var savePath = path.join(__dirname, "../static/", filePath);
+            var flag = fs.existsSync(savePath);
+            if (!flag) {
+                res.status(400).send("File not found");
+            }
+            else {
+                file.mv(savePath, function (err) {
+                    if (err)
+                        res.status(500).send(err);
+                    res.status(204).json();
+                });
+            }
+        }
+    };
+    UploadRouter.prototype.deleteFile = function (req, res, next) {
+        var filePath = req.params.filePath;
+        var checkPath = path.join(__dirname, "../static/", filePath);
         var flag = fs.existsSync(checkPath);
-        var data = filePath
-            ? filePath
-            : flag
-                ? "File deleted"
-                : "There weren't any files to delete";
         if (!flag) {
-            res.status(200).json({ data: data });
+            res.status(400).send("File not found");
         }
         else {
             fs.unlink(checkPath, function (err) {
                 if (err)
-                    return res.status(500).send(err);
-                res.status(200).json({ data: data });
+                    res.status(500).send(err);
+                res.status(204).json();
             });
         }
     };
     UploadRouter.prototype.routes = function () {
         var requireLogin = passport_1.default.authenticate("auth", { session: false });
         this.router.post("/", requireLogin, this.uploadFile);
-        this.router.put("/", requireLogin, this.uploadFile, this.deleteFile);
-        this.router.delete("/:route/:fileName", requireLogin, this.deleteFile);
+        this.router.put("/", requireLogin, this.updateFile);
+        this.router.delete("/", requireLogin, this.deleteFile);
     };
     return UploadRouter;
 }());

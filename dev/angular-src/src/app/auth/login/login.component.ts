@@ -31,9 +31,10 @@ export class LoginComponent implements OnInit {
           undefined,
           "success"
         );
-        this.dialogRef.close({
-          user: res.user
-        });
+        this.dialogRef.close();
+        // this.dialogRef.close({
+        //   user: res.user
+        // });
       },
       (e: HttpErrorResponse) => {
         this.notifications.show(e.error, undefined, "danger");

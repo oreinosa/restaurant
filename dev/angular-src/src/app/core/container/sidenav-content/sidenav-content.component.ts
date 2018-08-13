@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { User } from "../../../shared/models/user";
 
 @Component({
   selector: "app-sidenav-content",
@@ -6,6 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./sidenav-content.component.scss"]
 })
 export class SidenavContentComponent implements OnInit {
+  @Input()
+  user: User;
   @Input()
   actions: any[];
   @Input()
@@ -16,7 +19,7 @@ export class SidenavContentComponent implements OnInit {
   @Output("action")
   actionEmitter = new EventEmitter<string>();
   @Output()
-  navToggle = new EventEmitter();
+  toggleNav = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}

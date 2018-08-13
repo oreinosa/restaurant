@@ -1,23 +1,24 @@
-import { AdminModule } from "./admin/admin.module";
-import { AdminGuard } from "./auth/admin.guard";
-import { AuthGuard } from "./auth/auth.guard";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
-
-import { SharedModule } from "./shared/shared.module";
-import { CoreModule } from "./core/core.module";
-import { NotificationsModule } from "./notifications/notifications.module";
 
 import { AppRoutingModule } from "./app-routing.module";
 
 import { HttpClientModule } from "@angular/common/http";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { CoreModule } from "./core/core.module";
+import { NotificationsModule } from "./notifications/notifications.module";
+
 import { AuthModule } from "./auth/auth.module";
 import { AuthService } from "./auth/auth.service";
+import { AdminGuard } from "./auth/admin.guard";
+import { AuthGuard } from "./auth/auth.guard";
+
 import { JwtModule } from "@auth0/angular-jwt";
+import { MenuModule } from "./menu/menu.module";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -40,11 +41,10 @@ export function tokenGetter() {
       }
     }),
     BrowserAnimationsModule,
-    SharedModule,
     NotificationsModule,
     CoreModule,
     AuthModule,
-    AdminModule,
+    MenuModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

@@ -9,7 +9,19 @@
   </mat-card-header>
   <mat-card-content>
     <button mat-button type='button' routerLink='agregar'>Agregar {{ service.className | lowercase }}</button>
-    <table mat-table matSort [dataSource]="objects" class="mat-elevation-z0">
+    <div class="row my-4">
+      <div class="col-12 col-sm-6">
+        <h4>
+          <mat-form-field class='full-width'>
+            <mat-select placeholder='Filtrar por categoría' [formControl]='categoryCtrl'>
+              <mat-option value='all'>Todas</mat-option>
+              <mat-option *ngFor='let category of categories' [value]='category._id'> {{ category.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </h4>
+      </div>
+    </div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z0">
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
