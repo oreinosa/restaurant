@@ -17,7 +17,7 @@ export class ProductsComponent extends List<Product> {
     super(
       service,
       router,
-      ["id", "name", "imageURL", "actions"]
+      ["id", "name", "price", "cost", "imageURL", "actions"]
     );
   }
 

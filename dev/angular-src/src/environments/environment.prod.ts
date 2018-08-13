@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api: 'localhost/api/',
-  static: 'localhost/static'
+  api: 'http://localhost/api/v1',
+  static: 'http://localhost/static'
 };

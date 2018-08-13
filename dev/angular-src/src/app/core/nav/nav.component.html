@@ -7,7 +7,7 @@
     <app-sidenav-content [actions]='actions' [links]='links' (action)='onAction($event);drawer.close()' [overlay]='overlay$ | async'></app-sidenav-content>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-toolbar [actions]='actions' [links]='links' [appName]='appName' [overlay]='overlay$ | async' (toggleNav)='drawer.toggle()'
+    <app-toolbar [user]='user' [actions]='actions' [links]='links' [appName]='appName' [overlay]='overlay$ | async' (toggleNav)='drawer.toggle()'
       (action)='onAction($event)'></app-toolbar>
     <div class="container-fluid">
       <ng-content></ng-content>

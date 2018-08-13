@@ -1,3 +1,4 @@
+import { User } from './../../../shared/models/user';
 import {
   Component,
   OnInit,
@@ -13,6 +14,8 @@ import {
   styleUrls: ["./toolbar.component.scss"]
 })
 export class ToolbarComponent implements OnInit {
+  @Input()
+  user: User;
   @Input()
   actions: any[];
   @Input()
@@ -36,7 +39,7 @@ export class ToolbarComponent implements OnInit {
       window.scrollY > 35 || !(this.overlay === "md");
   }
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

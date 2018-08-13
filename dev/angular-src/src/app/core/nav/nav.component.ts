@@ -65,7 +65,7 @@ export class NavComponent {
   ) {
     this.links = [
       // { label: "Bienvenidos", route: "", icon: "home" },
-      { label: "Menú de la semana", route: "menu", icon: "restaurant_menu" }
+      { label: "Menú", route: "menu", icon: "restaurant_menu" }
     ];
     this.actions = [
       { label: "Ingresar", name: "ingresar", icon: "person" },
@@ -119,19 +119,18 @@ export class NavComponent {
     console.log("Updating routing for ", role);
     const links: any[] = [
       // { label: "Bienvenidos", route: "", icon: "home" },
-      { label: "Menú de la semana", route: "menu", icon: "restaurant_menu" }
+      { label: "Menú", route: "menu", icon: "restaurant_menu" }
     ];
     const actions: any[] = [];
     switch (role) {
       case "Admin":
         links.push({ label: "Admin", route: "admin", icon: "build" });
-        links.push({ label: "Órdenes", route: "ordenes", icon: "assignment_pending" });
+        links.push({ label: "Órdenes", route: "ordenes", icon: "assignment_late" });
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
         actions.push(
-          { label: "Mis órdenes", route: "mis-ordenes", icon: "assignment" },
+          { label: "Mis órdenes", route: "mis-ordenes", icon: "shopping_cart" },
           { label: "Perfil", name: "perfil", icon: "person" },
-          { label: "Cerrar sesión", name: "cerrar-sesion", icon: "exit_to_app" }
         );
         break;
       default:

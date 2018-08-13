@@ -12,5 +12,8 @@
     "include": [
         "server-src/**/*",
         "./package.json"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }

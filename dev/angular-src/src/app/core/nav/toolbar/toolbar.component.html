@@ -1,27 +1,33 @@
 <mat-toolbar>
   <mat-toolbar-row class='bg-primary' id='toolbar' [ngClass]='scrolled ? "sticky": ""'>
-    <!-- <button id='menu-button' type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleNav.emit()" *ngIf='overlay === "xs" || overlay === "sm"; else showLogo'>
+    <button id='menu-button' type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleNav.emit()" *ngIf='overlay === "xs" || overlay === "sm"; else showLogo'>
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button> -->
-    <ng-container *ngIf='!(overlay === "xs" || overlay === "sm")'>
+    </button>
+    <ng-template #showLogo>
       <img src="/assets/images/logo.png" alt="app-logo" class="img-fluid" id="app-logo">
-    </ng-container>
+    </ng-template>
     <span id='app-title' class='hover' routerLink=''>{{ appName }}</span>
-    <ng-container *ngIf='!(overlay === "xs")'>
-      <a *ngFor='let link of links' mat-button [routerLink]='link.route' routerLinkActive='active'>
+    <ng-container *ngIf='!(overlay === "xs" || overlay ==="sm")'>
+      <a *ngFor='let link of links' mat-button [matTooltip]='!(overlay === "lg" || overlay === "xl") ? link.label : ""' [routerLink]='link.route'
+        routerLinkActive='active'>
         <mat-icon *ngIf='link.icon'>{{ link.icon }}</mat-icon>
-        <ng-container *ngIf='!(overlay === "sm")'>{{ link.label }}</ng-container>
+        <ng-container *ngIf='!(overlay === "md")'>{{ link.label }}</ng-container>
       </a>
     </ng-container>
-    <span class="spacer"></span>
-    <a *ngFor='let action of actions' mat-button (click)='actionEmitter.emit(action.name)'>
-      <mat-icon *ngIf='action.icon'>{{ action.icon }}</mat-icon>
-      <ng-container *ngIf='!(overlay === "xs" || overlay === "sm")'>{{ action.label }}</ng-container>
-    </a>
+    <ng-container *ngIf='!(overlay === "xs")'>
+      <span class="spacer"></span>
+      <a *ngFor='let action of actions' mat-button [matTooltip]='!(overlay === "lg" || overlay === "xl") ? action.label : ""' (click)='actionEmitter.emit(action.name)'>
+        <mat-icon *ngIf='action.icon'>{{ action.icon }}</mat-icon>
+        <ng-container *ngIf='!(overlay === "sm" || overlay === "md")'>{{ action.label }}</ng-container>
+      </a>
+      <button mat-button matTooltip='Cerrar sesión' (click)='actionEmitter.emit("cerrar-sesion")' *ngIf='user'>
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </ng-container>
   </mat-toolbar-row>
-  <mat-toolbar-row class='bg-primary' *ngIf='overlay === "xs"'>
+  <!-- <mat-toolbar-row class='bg-primary' *ngIf='overlay === "xs"'>
     <a *ngFor='let link of links' mat-button [routerLink]='link.route' routerLinkActive='active'>
       <mat-icon *ngIf='link.icon'>{{ link.icon }}</mat-icon>
     </a>
-  </mat-toolbar-row>
+  </mat-toolbar-row> -->
 </mat-toolbar>
