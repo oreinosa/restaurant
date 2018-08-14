@@ -24,7 +24,7 @@ export class UploadService {
     );
   }
 
-  editFile(filePath: string, file: File): Observable<string> {
+  editFile(filePath: string, file: File): Observable<void> {
     const formData: FormData = new FormData();
     formData.append("uploadedFile", file, "upload");
     formData.append("filePath", filePath);

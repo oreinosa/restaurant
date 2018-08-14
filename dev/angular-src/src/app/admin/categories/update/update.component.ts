@@ -1,9 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { Category } from "../../../shared/models/category";
 import { Router, ActivatedRoute } from "@angular/router";
 import { CategoriesService } from "../categories.service";
 import { NotificationsService } from "../../../notifications/notifications.service";
 import { Update } from "../../../shared/helpers/update";
+import { UploadComponent } from "../../../upload/upload.component";
+import { NgForm } from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-update",
@@ -14,6 +17,8 @@ import { Update } from "../../../shared/helpers/update";
   ]
 })
 export class UpdateComponent extends Update<Category> {
+  @ViewChild(UploadComponent)
+  upload: UploadComponent;
   constructor(
     public service: CategoriesService,
     public notifications: NotificationsService,
@@ -21,5 +26,17 @@ export class UpdateComponent extends Update<Category> {
     public route: ActivatedRoute
   ) {
     super(service, notifications, router, route);
+  }
+
+  onSubmit(form: NgForm) {
+    this.upload.onSubmit(this.service.apiRoute).subscribe(
+      () => {
+        super.onSubmit(form);
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        form.reset(form.value);
+      }
+    );
   }
 }

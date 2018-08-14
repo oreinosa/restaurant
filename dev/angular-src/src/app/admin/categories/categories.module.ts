@@ -6,9 +6,10 @@ import { CategoriesComponent } from "./categories.component";
 import { CreateComponent } from "./create/create.component";
 import { DeleteComponent } from "./delete/delete.component";
 import { UpdateComponent } from "./update/update.component";
+import { UploadModule } from "../../upload/upload.module";
 
 @NgModule({
-  imports: [SharedModule, CategoriesRoutingModule],
+  imports: [SharedModule, UploadModule, CategoriesRoutingModule],
   declarations: [
     CategoriesComponent,
     CreateComponent,

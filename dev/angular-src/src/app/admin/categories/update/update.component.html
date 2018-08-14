@@ -7,12 +7,19 @@
     </mat-card-header>
     <mat-card-content>
       <ng-container *ngIf='object as category'>
-        <mat-form-field>
-          <input matInput type="text" placeholder='Nombre' [ngModel]='category.name' name='name' required [readonly]='f.submitted'>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput type="text" placeholder='Descripción' [ngModel]='category.description' name='description' required [readonly]='f.submitted'>
-        </mat-form-field>
+        <div class="row">
+          <div class="div-col-12 col-sm-6 col-lg-4 offset-lg-1">
+            <mat-form-field>
+              <input matInput type="text" placeholder='Nombre' [ngModel]='category.name' name='name' required [readonly]='f.submitted'>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" placeholder='Descripción' [ngModel]='category.description' name='description' required [readonly]='f.submitted'>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 offset-lg-1 text-center my-2">
+            <app-upload [fileURL]='category.imageURL | showImage'></app-upload>
+          </div>
+        </div>
       </ng-container>
     </mat-card-content>
     <mat-card-actions>

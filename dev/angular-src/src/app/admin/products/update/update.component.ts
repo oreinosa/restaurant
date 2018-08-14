@@ -48,20 +48,19 @@ export class UpdateComponent extends Update<Product> implements OnInit {
       .subscribe((categories: Category[]) => (this.categories = categories));
   }
 
-  compareCategoryFn(a: Category, b: Category): boolean {
-    if (a && b) {
-      return a._id === b._id;
-    }
-    return false;
-  }
-
   onSubmit(form: NgForm) {
-    this.upload.onSubmit().subscribe(
-      () => {
-        super.onSubmit(form);
+    this.upload.onSubmit(this.service.apiRoute).subscribe(
+      (imageURL: string) => {
+        if (imageURL) {
+          form.setValue({ ...form.value, imageURL });
+          console.log(form.value);
+        }
+        form.reset(form.value);
+        // super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
+        form.reset(form.value);
       }
     );
   }
