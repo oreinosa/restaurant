@@ -18,6 +18,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 offset-lg-1 text-center my-2">
             <app-upload [fileURL]='category.imageURL | showImage'></app-upload>
+            <input type="text" placeholder='Image URL' [ngModel]='category.imageURL' name='imageURL' class='d-none'>
           </div>
         </div>
       </ng-container>

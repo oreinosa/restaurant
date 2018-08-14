@@ -34,12 +34,9 @@ var CategoryRouter = (function () {
         });
     };
     CategoryRouter.prototype.create = function (req, res) {
-        var _a = req.body, name = _a.name, description = _a.description;
-        var category = new category_model_1.Category({
-            name: name,
-            description: description,
-        });
-        if (name && description) {
+        var _a = req.body, name = _a.name, description = _a.description, imageURL = _a.imageURL;
+        if (name && description && imageURL) {
+            var category = new category_model_1.Category(req.body);
             category_model_1.Category.create(category)
                 .then(function (category) {
                 var data = category;
@@ -61,7 +58,7 @@ var CategoryRouter = (function () {
                 res.status(200).json({ data: data });
             }
             else {
-                res.status(404).send('Category not found');
+                res.status(404).send("Category not found");
             }
         })
             .catch(function (error) {

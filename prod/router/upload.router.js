@@ -59,16 +59,11 @@ var UploadRouter = (function () {
         else {
             var savePath = path.join(__dirname, "../static/", filePath);
             var flag = fs.existsSync(savePath);
-            if (!flag) {
-                res.status(400).send("File not found");
-            }
-            else {
-                file.mv(savePath, function (err) {
-                    if (err)
-                        res.status(500).send(err);
-                    res.status(204).json();
-                });
-            }
+            file.mv(savePath, function (err) {
+                if (err)
+                    res.status(500).send(err);
+                res.status(204).json();
+            });
         }
     };
     UploadRouter.prototype.deleteFile = function (req, res, next) {

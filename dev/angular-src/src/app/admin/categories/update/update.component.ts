@@ -30,7 +30,14 @@ export class UpdateComponent extends Update<Category> {
 
   onSubmit(form: NgForm) {
     this.upload.onSubmit(this.service.apiRoute).subscribe(
-      () => {
+      (imageURL: string) => {
+        if (imageURL) {
+          form.controls.imageURL.setValue(imageURL);
+        } else {
+          form.controls.imageURL.disable();
+        }
+        console.log(form.value);
+        // form.reset(form.value);
         super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {

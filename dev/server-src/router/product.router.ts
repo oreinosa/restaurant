@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import passport from "../config/passport";
 import { Product, IProduct } from "../models/product.model";
-import { removeFile }  from '../router/upload.router';
+import { removeFile } from "../router/upload.router";
 
 class ProductRouter {
   public router: Router;
@@ -40,9 +40,10 @@ class ProductRouter {
   }
 
   public create(req: Request, res: Response): void {
-    const { name, price, cost, imageURL, category } = req.body;
+    const { name, description, price, cost, imageURL, category } = req.body;
     if (
       name &&
+      description &&
       price &&
       cost &&
       imageURL &&
@@ -83,7 +84,7 @@ class ProductRouter {
     const { _id } = req.params;
 
     Product.findByIdAndRemove(_id)
-      .then((product:IProduct) => {
+      .then((product: IProduct) => {
         console.log(removeFile(product.imageURL));
         res.status(204).end();
       })

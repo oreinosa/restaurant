@@ -2,9 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 var category_model_1 = require("./category.model");
-category_model_1.Category.schema.path('description').required(false);
+category_model_1.Category.schema.path("description").required(false);
 var ProductSchema = new mongoose_1.Schema({
     name: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     },

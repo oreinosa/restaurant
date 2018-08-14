@@ -70,14 +70,14 @@ class UploadRouter {
       // CHECK IF FOLDER EXISTS
       const flag = fs.existsSync(savePath);
       // IF IT DOESN'T IT'LL BE CREATED
-      if (!flag) {
-        res.status(400).send("File not found");
-      } else {
-        file.mv(savePath, (err: any) => {
-          if (err) res.status(500).send(err);
-          res.status(204).json();
-        });
-      }
+      // if (!flag) {
+      // res.status(400).send("File not found");
+      // } else {
+      file.mv(savePath, (err: any) => {
+        if (err) res.status(500).send(err);
+        res.status(204).json();
+      });
+      // }
     }
   }
 

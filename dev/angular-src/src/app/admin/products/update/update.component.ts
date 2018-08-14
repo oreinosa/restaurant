@@ -48,15 +48,23 @@ export class UpdateComponent extends Update<Product> implements OnInit {
       .subscribe((categories: Category[]) => (this.categories = categories));
   }
 
+  categoryCompareWith(a: Category, b: Category): boolean {
+    if (a && b) {
+      return a._id === b._id;
+    }
+    return false;
+  }
+
   onSubmit(form: NgForm) {
     this.upload.onSubmit(this.service.apiRoute).subscribe(
       (imageURL: string) => {
         if (imageURL) {
-          form.setValue({ ...form.value, imageURL });
-          console.log(form.value);
+          form.controls.imageURL.setValue(imageURL);
+        } else {
+          form.controls.imageURL.disable();
         }
-        form.reset(form.value);
-        // super.onSubmit(form);
+        // form.reset(form.value);
+        super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {
         console.log(error);

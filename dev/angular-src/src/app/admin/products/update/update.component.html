@@ -13,7 +13,7 @@
               <input matInput type="text" placeholder='Nombre' [ngModel]='product.name' name='name' required [readonly]='f.submitted'>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder='Descripción' [(ngModel)]='product.description' name='description' required [readonly]='f.submitted'>
+              <input matInput type="text" placeholder='Descripción' [ngModel]='product.description' name='description' required [readonly]='f.submitted'>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="number" placeholder='Precio' [ngModel]='product.price' name='price' required [readonly]='f.submitted'>
@@ -22,7 +22,8 @@
               <input matInput type="number" placeholder='Costo' [ngModel]='product.cost' name='cost' required [readonly]='f.submitted'>
             </mat-form-field>
             <mat-form-field *ngIf='categories;else loadingCategories'>
-              <mat-select placeholder='Categoría' [ngModel]='product.category' name='category' required [disabled]='f.submitted'>
+              <mat-select placeholder='Categoría' [ngModel]='product.category' name='category' [compareWith]='categoryCompareWith' required
+                [disabled]='f.submitted'>
                 <mat-option *ngFor='let category of categories' [value]='category'>{{ category.name }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -32,6 +33,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-6 offset-lg-1 text-center my-2">
             <app-upload [fileURL]='product.imageURL | showImage'></app-upload>
+            <input type="text" placeholder='Image URL' [ngModel]='product.imageURL' name='imageURL' class='d-none'>
           </div>
         </div>
       </ng-container>
