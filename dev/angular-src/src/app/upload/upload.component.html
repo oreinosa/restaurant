@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" (drop)='onDrop($event)' (dragover)="onDragover($event);">
   <div class="col-12 mb-4">
-    <div class="drop_zone my-2 hover" (click)='addFile()' (drop)='onDrop($event)' (dragover)="onDragover($event);">
+    <div class="drop_zone my-2 hover" (click)='addFile()' >
       <p class="hint-message">{{ hint }}</p>
       <p class='supported-types'>({{ types }})</p>
     </div>

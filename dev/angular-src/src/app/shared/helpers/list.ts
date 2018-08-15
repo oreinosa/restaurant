@@ -4,6 +4,7 @@ import { switchMap, tap, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { DAO } from "./dao";
 import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
+import { environment } from "../../../environments/environment";
 
 export class List<T> implements OnInit, OnDestroy {
   public ngUnsubscribe = new Subject();
@@ -19,7 +20,14 @@ export class List<T> implements OnInit, OnDestroy {
     public service: DAO<T>,
     public router: Router,
     public displayedColumns: string[]
-  ) {}
+  ) {
+    if (!environment.production) {
+      const idIndex = this.displayedColumns.findIndex(
+        columnName => columnName === "_id" || columnName === "id"
+      );
+      this.displayedColumns.splice(idIndex, 1);
+    }
+  }
 
   ngOnInit() {
     this.service

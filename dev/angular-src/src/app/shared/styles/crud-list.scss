@@ -1,10 +1,13 @@
-table {
-  width: 100%;
+.table-container{
   overflow: auto;
-  min-width: 700px;
+  table {
+    width: 100%;
+    min-width: 700px;
+  }
 }
+
 .mat-cell{
-  padding: 0 5px;
+  padding: 0 10px;
 }
 .action-container{
   margin-bottom: 15px;

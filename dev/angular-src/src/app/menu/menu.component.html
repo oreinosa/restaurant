@@ -1,8 +1,12 @@
 <div class="row">
-  <div class="col-12 col-md-4 col-lg-3">
-    <app-category></app-category>
+  <div class="col-12 mb-3">
+    <mat-card class="categories-header">
+      <mat-card-content class='text-center'>
+        <h3>Nuestras categorías</h3>
+      </mat-card-content>
+    </mat-card>
   </div>
-  <div class="col-12 col-md-8 col-lg-9">
-    <app-products></app-products>
+  <div class='col-12 col-sm-6 col-md-4' *ngFor='let category of categories;let isLast=last' [ngClass]='!isLast ? "mb-3" : ""'>
+    <app-category [category]='category'></app-category>
   </div>
 </div>
