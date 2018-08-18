@@ -20,6 +20,8 @@ import { AuthGuard } from "./auth/auth.guard";
 
 import { JwtModule } from "@auth0/angular-jwt";
 import { MenuModule } from "./menu/menu.module";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -48,7 +50,8 @@ export function tokenGetter() {
     AuthModule,
     MenuModule,
     ShoppingCartModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
