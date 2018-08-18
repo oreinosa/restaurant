@@ -1,0 +1,89 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/1.1d35f097887498986b83.js",
+        "/2.c1151b1d111a69810d62.js",
+        "/3.f53940942531a230f1ab.js",
+        "/4.a65e566de236c7b5d597.js",
+        "/5.09e667345c97795e90ca.js",
+        "/common.f143ac9414ab75db7deb.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.5eebc695feae118eb85e.js",
+        "/polyfills.51dc84143aff78680bcb.js",
+        "/runtime.0cdee26285ee6ec887c8.js",
+        "/styles.9cfe266585f1b8387aad.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/images/icons/icon-128x128.png",
+        "/assets/images/icons/icon-144x144.png",
+        "/assets/images/icons/icon-152x152.png",
+        "/assets/images/icons/icon-192x192.png",
+        "/assets/images/icons/icon-384x384.png",
+        "/assets/images/icons/icon-512x512.png",
+        "/assets/images/icons/icon-72x72.png",
+        "/assets/images/icons/icon-96x96.png",
+        "/assets/images/kitchen.jpg",
+        "/assets/images/logo.png",
+        "/assets/manifest.json"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/1.1d35f097887498986b83.js": "d876b5ef69394b0ad2e103b6179193b54bdecac4",
+    "/2.c1151b1d111a69810d62.js": "c3bea630e311701fe791c3010c858195b092ee5e",
+    "/3.f53940942531a230f1ab.js": "57b16e4a629cbea67da153452a802514ebb956cd",
+    "/4.a65e566de236c7b5d597.js": "ed223e4d560960dbfd75f08119ce6be69ee66d55",
+    "/5.09e667345c97795e90ca.js": "2aba001122072ccf64fcba6a5bb8ed03a8bcd68d",
+    "/assets/images/icons/icon-128x128.png": "bf317af799669fa97da2c280969719aa5e8c4ff9",
+    "/assets/images/icons/icon-144x144.png": "29757b3d147018451d0a96b7aef8269f07b43489",
+    "/assets/images/icons/icon-152x152.png": "877cc80eaf890cb64b03095078908b37ee331bda",
+    "/assets/images/icons/icon-192x192.png": "7ab73584d1286fa9ccf4c8cabb7a54a06b29d3cf",
+    "/assets/images/icons/icon-384x384.png": "696d59de2eec6e991ff988bd3ceda80310667319",
+    "/assets/images/icons/icon-512x512.png": "08f97c64163c0ea737da8c516dbb4b200a10a31a",
+    "/assets/images/icons/icon-72x72.png": "8dce9718ad909445adf076680d2d4ba8ee7a48a8",
+    "/assets/images/icons/icon-96x96.png": "d637b088e163fdc9e211f4b3aa3e90119f076b21",
+    "/assets/images/kitchen.jpg": "46aa187b08d9e9ccf4f8413c660631f8937463de",
+    "/assets/images/logo.png": "65be3bf8a900607f89558bf78f9eb80dc746f4b0",
+    "/assets/manifest.json": "9063f28c3e6c90c265227cfd1ec2b15fa567b493",
+    "/common.f143ac9414ab75db7deb.js": "06a7ba901cdfb5a1917780a78b1eea9f71cc65ef",
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/index.html": "7c380fafb3afec9e52b6f7b4550fabdd00c9e71d",
+    "/main.5eebc695feae118eb85e.js": "22245c3f1d8fc2daded6a03e29276a4025f03454",
+    "/polyfills.51dc84143aff78680bcb.js": "63985969b0706dc83de489bd58ce2959cb9820b4",
+    "/runtime.0cdee26285ee6ec887c8.js": "1d5fd843f96989675f9c7957b5a0fac4f17fdd31",
+    "/styles.9cfe266585f1b8387aad.css": "26dee96670eddcb6be3f7305aeafdf7b7de1fa87"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
