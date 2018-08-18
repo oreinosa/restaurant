@@ -17,5 +17,9 @@
       <button mat-button type='submit' [disabled]='f.invalid || f.submitted'>Agregar</button>
       <button mat-button type='button' routerLink='../' [disabled]='f.submitted'>Cancelar</button>
     </mat-card-actions>
+    <div class="col-12 col-sm-6 col-lg-6 offset-lg-1 text-center my-2">
+      <app-upload></app-upload>
+      <input type="text" placeholder='Image URL' [(ngModel)]='category.imageURL' name='imageURL' class='d-none'>
+    </div>
   </mat-card>
 </form>

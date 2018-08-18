@@ -1,3 +1,5 @@
+@import 'src/_colors';
+
 .container-fluid {
   background-color: #d3d3d3;
   /* Full height */
@@ -18,5 +20,5 @@
 .sidenav {
   width: 250px;
   box-shadow: 3px 0 6px rgba(0, 0, 0, 0.1);
-  background-color: #d3d3d3;
+  background-color: $primary-light;
 }

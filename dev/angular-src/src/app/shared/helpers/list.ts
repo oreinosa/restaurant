@@ -19,7 +19,12 @@ export class List<T> implements OnInit, OnDestroy {
     public service: DAO<T>,
     public router: Router,
     public displayedColumns: string[]
-  ) {}
+  ) {
+    if (true) {
+      const indexID = displayedColumns.indexOf("id");
+      if (indexID >= 0) displayedColumns.splice(indexID, 1);
+    }
+  }
 
   ngOnInit() {
     this.service
@@ -31,6 +36,7 @@ export class List<T> implements OnInit, OnDestroy {
           console.log(`${this.service.collectionName} : `, objects);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
+          this.dataSource.paginator.pageSize = 10;
           this.objects = objects;
         })
       )

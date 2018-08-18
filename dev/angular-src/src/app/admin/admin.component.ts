@@ -12,9 +12,9 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.links = [
       { label: "Usuarios", route: "usuarios", icon: "people" },
+      { label: "Categorías", route: "categorias", icon: "category" },
       { label: "Productos", route: "productos", icon: "fastfood" },
-      { label: "Categorías", route: "categorias", icon: "assignment" },
-      { label: "Combos", route: "combos", icon: "restaurant" }
+      { label: "Combos", route: "combos", icon: "restaurant_menu" },
     ];
   }
 }

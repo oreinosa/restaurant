@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import passport from "../config/passport";
 import { Product, IProduct } from "../models/product.model";
-import { removeFile }  from '../router/upload.router';
+import { removeFile } from '../router/upload.router';
 
 class ProductRouter {
   public router: Router;
@@ -21,6 +21,24 @@ class ProductRouter {
         res.status(500).send(error);
         return error;
       });
+  }
+
+  public allByCategory(req: Request, res: Response): void {
+    const { categoryName } = req.params;
+    if (categoryName) {
+      Product.find({ "category.name": categoryName })
+        .then((data: IProduct[]) => {
+          // if users are found
+          // console.log(data);
+          return res.status(200).json({ data });
+        })
+        .catch((error: any) => {
+          res.status(500).send(error);
+          return error;
+        });
+    } else {
+      res.status(400).send("Missing fields");
+    }
   }
 
   public one(req: Request, res: Response): void {
@@ -83,7 +101,7 @@ class ProductRouter {
     const { _id } = req.params;
 
     Product.findByIdAndRemove(_id)
-      .then((product:IProduct) => {
+      .then((product: IProduct) => {
         console.log(removeFile(product.imageURL));
         res.status(204).end();
       })
@@ -96,11 +114,14 @@ class ProductRouter {
   public routes() {
     const requireAdmin = passport.authenticate("admin", { session: false });
 
+    this.router.get('/categoria/:categoryName', this.allByCategory)
+
     this.router
       .route("/")
       .get(this.all)
       .all(requireAdmin)
       .post(this.create);
+
 
     this.router
       .route("/:_id")

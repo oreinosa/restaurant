@@ -38,7 +38,7 @@ export class ContainerComponent {
       BREAKPOINTS.xlarge
     ])
     .pipe(
-      // tap(result => console.log(Breakpoints)),
+      // tap(result => console.log(result)),
       map(result => {
         let layout: string;
         if (this.checkBreakpoint(BREAKPOINTS.xlarge)) {
@@ -54,7 +54,7 @@ export class ContainerComponent {
         }
         return layout;
       })
-      // tap(layout => console.log(layout))
+      // , tap(layout => console.log(layout))
     );
 
   constructor(
@@ -65,7 +65,7 @@ export class ContainerComponent {
   ) {
     this.links = [
       // { label: "Bienvenidos", route: "", icon: "home" },
-      { label: "Menú", route: "menu", icon: "restaurant_menu" }
+      { label: "Ordenar", route: "menu", icon: "restaurant_menu" }
     ];
     this.actions = [
       { label: "Ingresar", name: "ingresar", icon: "person" },
@@ -118,12 +118,19 @@ export class ContainerComponent {
     console.log("Updating routing for ", role);
     const links: any[] = [
       // { label: "Bienvenidos", route: "", icon: "home" },
-      { label: "Menú", route: "menu", icon: "restaurant_menu" }
+      { label: "Ordenar", route: "menu", icon: "restaurant_menu" }
     ];
     const actions: any[] = [];
     switch (role) {
       case "Admin":
-        links.push({ label: "Admin", route: "admin", icon: "build" });
+        links.push({
+          label: "Admin", route: "admin", icon: "build", children: [
+            { label: "Usuarios", route: "usuarios", icon: "people" },
+            { label: "Categorías", route: "categorias", icon: "category" },
+            { label: "Productos", route: "productos", icon: "fastfood" },
+            { label: "Combos", route: "combos", icon: "restaurant_menu" },
+          ]
+        });
         links.push({
           label: "Órdenes",
           route: "ordenes",
@@ -132,8 +139,7 @@ export class ContainerComponent {
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
         actions.push(
-          { label: "Mis órdenes", route: "mis-ordenes", icon: "shopping_cart" },
-          { label: "Perfil", name: "perfil", icon: "person" }
+          { label: "Carrito", route: "carrito", icon: "add_shopping_cart" },
         );
         break;
       default:

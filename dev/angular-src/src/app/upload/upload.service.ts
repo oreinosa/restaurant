@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 export class UploadService {
   private api = environment.api + "upload/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   uploadFile(route: string, file: File): Observable<string> {
     const formData: FormData = new FormData();

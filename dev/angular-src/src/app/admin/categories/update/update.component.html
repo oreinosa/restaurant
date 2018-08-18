@@ -13,6 +13,10 @@
         <mat-form-field>
           <input matInput type="text" placeholder='Descripción' [ngModel]='category.description' name='description' required [readonly]='f.submitted'>
         </mat-form-field>
+        <div class="col-12 col-sm-6 col-lg-6 offset-lg-1 text-center my-2">
+          <app-upload [fileURL]='category.imageURL | showImage'></app-upload>
+          <input type="text" placeholder='Image URL' [ngModel]='category.imageURL' name='imageURL' class='d-none'>
+        </div>
       </ng-container>
     </mat-card-content>
     <mat-card-actions>

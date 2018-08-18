@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 export class User {
   constructor(
     public _id?: string,
@@ -6,6 +7,6 @@ export class User {
     public email?: string,
     public role?: string,
     public createdAt?: Date,
-    public password?: string
+    public password?: string,
   ) {}
 }

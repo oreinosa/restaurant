@@ -1,6 +1,8 @@
 import { model, Schema, Model, Document } from "mongoose";
 import { Category, ICategory } from "./category.model";
 Category.schema.path('description').required(false);
+Category.schema.path('imageURL').required(false);
+
 const ProductSchema: Schema = new Schema({
   name: {
     type: String,

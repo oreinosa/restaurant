@@ -23,7 +23,7 @@ export class UploadComponent implements OnInit {
   file: File;
   mode = "new";
 
-  constructor(private uploadService: UploadService) {}
+  constructor(private uploadService: UploadService) { }
 
   ngOnInit() {
     if (this.fileURL) {
@@ -101,13 +101,15 @@ export class UploadComponent implements OnInit {
     event.preventDefault();
   }
 
-  onSubmit(fileRoute?: string): Observable<string> {
+  onSubmit(fileRoute: string): Observable<string> {
     // console.log(this.file);
     // console.log('submitting ', this.mode);
-    if (this.mode === "new") {
-      return this.uploadService.uploadFile(fileRoute, this.file);
-    } else if (this.mode === "edit" && this.file) {
-      return this.uploadService.editFile(this.originalFileURL, this.file);
+    if (this.file) {
+      if (this.mode === "edit" && this.originalFileURL) {
+        return this.uploadService.editFile(this.originalFileURL, this.file);
+      } else if (this.mode === "new" || this.mode === "edit") {
+        return this.uploadService.uploadFile(fileRoute, this.file);
+      }
     }
     return of(null);
   }

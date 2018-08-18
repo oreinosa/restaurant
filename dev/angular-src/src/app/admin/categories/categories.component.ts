@@ -17,7 +17,7 @@ export class CategoriesComponent extends List<Category> {
     super(
       service,
       router,
-      ["id", "name", "description", "actions"]
+      ["id", "name", "description", "imageURL", "actions"]
     );
   }
 

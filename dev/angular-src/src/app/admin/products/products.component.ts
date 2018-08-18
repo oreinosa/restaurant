@@ -35,23 +35,24 @@ export class ProductsComponent extends List<Product> implements OnInit {
     this.service
       .all()
       .pipe(
+        switchMap(() => this.categoriesService.all()),
+        tap(categories => {
+          console.log(categories);
+          this.categories = categories;
+        }),
         switchMap(() => this.service.objects),
         takeUntil(this.ngUnsubscribe),
         tap(products => {
           console.log(`${this.service.collectionName} : `, products);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          this.dataSource.data = this.objects = products;
-        }),
-        switchMap(() => this.categoriesService.all()),
-        tap(categories => {
-          console.log(categories);
-          this.categories = categories;
+          this.objects = products;
+          this.dataSource.data = this.filterByCategory(this.categoryCtrl.value);
         }),
         switchMap(() => this.categoryCtrl.valueChanges),
         takeUntil(this.ngUnsubscribe),
-        // tap(categoryId => console.log(categoryId))
-      )
+      // tap(categoryId => console.log(categoryId))
+    )
       .subscribe(
         (categoryId: string) =>
           (this.dataSource.data = this.filterByCategory(categoryId))

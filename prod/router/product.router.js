@@ -19,6 +19,22 @@ var ProductRouter = (function () {
             return error;
         });
     };
+    ProductRouter.prototype.allByCategory = function (req, res) {
+        var categoryName = req.params.categoryName;
+        if (categoryName) {
+            product_model_1.Product.find({ "category.name": categoryName })
+                .then(function (data) {
+                return res.status(200).json({ data: data });
+            })
+                .catch(function (error) {
+                res.status(500).send(error);
+                return error;
+            });
+        }
+        else {
+            res.status(400).send("Missing fields");
+        }
+    };
     ProductRouter.prototype.one = function (req, res) {
         var _id = req.params._id;
         product_model_1.Product.findById(_id)
@@ -83,6 +99,7 @@ var ProductRouter = (function () {
     };
     ProductRouter.prototype.routes = function () {
         var requireAdmin = passport_1.default.authenticate("admin", { session: false });
+        this.router.get('/categoria/:categoryName', this.allByCategory);
         this.router
             .route("/")
             .get(this.all)

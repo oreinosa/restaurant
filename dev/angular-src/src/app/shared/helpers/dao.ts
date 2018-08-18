@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 
 export abstract class DAO<T> {
-  private api: string = environment.api;
+  private $api: string = environment.api;
 
   private selectedProductSubject = new BehaviorSubject<T>(null);
   public objects = new BehaviorSubject<T[]>([]);
@@ -15,9 +15,15 @@ export abstract class DAO<T> {
     public collectionName: string,
     public apiRoute: string
   ) {
-    this.api += apiRoute + "/";
+    this.$api += apiRoute + "/";
   }
 
+  get api(): string {
+    return this.$api;
+  }
+  // set api(api: string) {
+  //   this.$api = api;
+  // }
   getSelectedObject(): Observable<T> {
     return this.selectedProductSubject.asObservable();
   }
@@ -31,7 +37,7 @@ export abstract class DAO<T> {
   }
 
   all() {
-    return this.http.get<any>(this.api).pipe(
+    return this.http.get<any>(this.$api).pipe(
       map(res => {
         return res.data as T[];
       }),
@@ -42,7 +48,7 @@ export abstract class DAO<T> {
   }
 
   one(_id: string) {
-    return this.http.get<any>(this.api + _id).pipe(
+    return this.http.get<any>(this.$api + _id).pipe(
       map(res => {
         return res.data as T;
       })
@@ -50,7 +56,7 @@ export abstract class DAO<T> {
   }
 
   create(newObject: T) {
-    return this.http.post<any>(this.api, newObject).pipe(
+    return this.http.post<any>(this.$api, newObject).pipe(
       map(res => {
         return res.data as T;
       }),
@@ -63,7 +69,7 @@ export abstract class DAO<T> {
   }
 
   update(_id: string, object: T) {
-    return this.http.put<any>(this.api + _id, object).pipe(
+    return this.http.put<any>(this.$api + _id, object).pipe(
       map(res => {
         return res.data as T;
       }),

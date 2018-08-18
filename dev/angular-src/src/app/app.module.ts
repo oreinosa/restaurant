@@ -1,3 +1,4 @@
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -36,7 +37,8 @@ export function tokenGetter() {
           "localhost",
           "127.0.0.1",
           "thenewfuturesv.com",
-          "www.thenewfuturesv.com"
+          "www.thenewfuturesv.com",
+          "ubuntu"
         ]
       }
     }),
@@ -45,6 +47,7 @@ export function tokenGetter() {
     CoreModule,
     AuthModule,
     MenuModule,
+    ShoppingCartModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

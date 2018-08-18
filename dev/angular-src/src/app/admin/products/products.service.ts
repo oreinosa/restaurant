@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "../../shared/models/product";
 import { DAO } from "../../shared/helpers/dao";
@@ -6,7 +6,7 @@ import { DAO } from "../../shared/helpers/dao";
   providedIn: "root"
 })
 export class ProductsService extends DAO<Product> {
-  constructor(httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient) {
     super(httpClient, "Producto", "Productos", "productos");
   }
 }

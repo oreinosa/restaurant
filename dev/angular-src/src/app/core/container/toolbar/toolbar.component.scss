@@ -1,13 +1,15 @@
 :host {
-  a{
+  .mat-button, .mat-icon-button{
+    margin: 0 2px;
     color: white;
     &:hover:not(#menu-button):not(#app-title),
     &.active:not(#menu-button):not(#app-title) {
       color: black;
     }
-
+  }
+  .mat-button {
     .mat-icon {
-      margin-right: 5px;
+      margin-right: 3px;
       vertical-align: middle;
       color: inherit;
     }
@@ -16,13 +18,17 @@
 
 #toolbar {
   height: 64px;
-  #app-logo{
+  #app-logo, #avatar-photo{
     height: 60px;
   }
 
   #app-title, #menu-button, #app-logo{
     color: white;
     margin-right: 10px;
+  }
+
+  .app-link, .app-action{
+    padding: 0px 5px;
   }
 }
 

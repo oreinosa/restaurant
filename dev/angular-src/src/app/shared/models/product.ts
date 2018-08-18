@@ -6,6 +6,7 @@ export class Product {
     public cost?: number,
     public price?: number,
     public imageURL?: string,
-    public category?: Category
+    public category?: Category,
+    public discount?: number
   ) { }
 }

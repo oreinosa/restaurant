@@ -56,8 +56,12 @@ export class UpdateComponent extends Update<Product> implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.upload.onSubmit().subscribe(
-      () => {
+    this.upload.onSubmit(this.service.apiRoute).subscribe(
+      (imageURL: string) => {
+        if (imageURL) {
+          const imageCtrl = form.controls.imageURL;
+          imageCtrl.setValue(imageURL); // set imageURL input value to the resolt of the upload POST event
+        }
         super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {
