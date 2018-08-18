@@ -51,8 +51,9 @@ var ProductRouter = (function () {
         });
     };
     ProductRouter.prototype.create = function (req, res) {
-        var _a = req.body, name = _a.name, price = _a.price, cost = _a.cost, imageURL = _a.imageURL, category = _a.category;
+        var _a = req.body, name = _a.name, description = _a.description, price = _a.price, cost = _a.cost, imageURL = _a.imageURL, category = _a.category;
         if (name &&
+            description &&
             price &&
             cost &&
             imageURL &&

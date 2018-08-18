@@ -16,6 +16,8 @@ export class UploadComponent implements OnInit {
   types = ".png,.jpeg,.jpg";
   @Input()
   hint = "Selecciona o arrastra un archivo acá";
+  @Input()
+  errorMsg = "No se ha subido ninguna imagen aún";
   // 'Select/Drag a file here!';
   @ViewChild("file")
   fileInput;
@@ -101,7 +103,7 @@ export class UploadComponent implements OnInit {
     event.preventDefault();
   }
 
-  onSubmit(fileRoute: string): Observable<string> {
+  onSubmit(fileRoute?: string): Observable<string | void> {
     // console.log(this.file);
     // console.log('submitting ', this.mode);
     if (this.file) {

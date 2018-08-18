@@ -48,7 +48,7 @@ export class UpdateComponent extends Update<Product> implements OnInit {
       .subscribe((categories: Category[]) => (this.categories = categories));
   }
 
-  compareCategoryFn(a: Category, b: Category): boolean {
+  categoryCompareWith(a: Category, b: Category): boolean {
     if (a && b) {
       return a._id === b._id;
     }
@@ -59,13 +59,16 @@ export class UpdateComponent extends Update<Product> implements OnInit {
     this.upload.onSubmit(this.service.apiRoute).subscribe(
       (imageURL: string) => {
         if (imageURL) {
-          const imageCtrl = form.controls.imageURL;
-          imageCtrl.setValue(imageURL); // set imageURL input value to the resolt of the upload POST event
+          form.controls.imageURL.setValue(imageURL);
+        } else {
+          form.controls.imageURL.disable();
         }
+        // form.reset(form.value);
         super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
+        form.reset(form.value);
       }
     );
   }

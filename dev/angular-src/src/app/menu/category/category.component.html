@@ -1,0 +1,12 @@
+<mat-card *ngIf='category' class='hover' [ngClass]='hovered ? "mat-elevation-z10" : "mat-elevation-z5"' (mouseenter)='hover = true'
+  (mouseleave)='hover = false'>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>{{ category.name }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ category.imageURL | showImage }}" [alt]="category.name">
+  <mat-card-content>
+    <h5>{{ category.description }}</h5>
+  </mat-card-content>
+</mat-card>

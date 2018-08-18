@@ -58,9 +58,10 @@ class ProductRouter {
   }
 
   public create(req: Request, res: Response): void {
-    const { name, price, cost, imageURL, category } = req.body;
+    const { name, description, price, cost, imageURL, category } = req.body;
     if (
       name &&
+      description &&
       price &&
       cost &&
       imageURL &&

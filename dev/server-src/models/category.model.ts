@@ -13,6 +13,10 @@ const CategorySchema: Schema = new Schema({
     type: String,
     required: true
   },
+  imageURL: {
+    type: String,
+    required: true
+  },
 });
 
 export interface ICategory extends Document {

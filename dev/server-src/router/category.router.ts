@@ -41,7 +41,6 @@ class CategoryRouter {
   public create(req: Request, res: Response): void {
     const { name, description, imageURL } = req.body;
 
-
     if (name && description && imageURL) {
       const category = new Category(req.body);
       Category.create(category)
@@ -65,7 +64,7 @@ class CategoryRouter {
         if (data) {
           res.status(200).json({ data });
         } else {
-          res.status(404).send('Category not found');
+          res.status(404).send("Category not found");
         }
       })
       .catch((error: any) => {

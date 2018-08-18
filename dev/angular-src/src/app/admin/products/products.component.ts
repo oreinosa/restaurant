@@ -24,6 +24,7 @@ export class ProductsComponent extends List<Product> implements OnInit {
     super(service, router, [
       "id",
       "name",
+      "category",
       "price",
       "cost",
       "imageURL",
@@ -32,6 +33,9 @@ export class ProductsComponent extends List<Product> implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
     this.service
       .all()
       .pipe(
@@ -44,15 +48,34 @@ export class ProductsComponent extends List<Product> implements OnInit {
         takeUntil(this.ngUnsubscribe),
         tap(products => {
           console.log(`${this.service.collectionName} : `, products);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
           this.objects = products;
           this.dataSource.data = this.filterByCategory(this.categoryCtrl.value);
         }),
         switchMap(() => this.categoryCtrl.valueChanges),
         takeUntil(this.ngUnsubscribe),
-      // tap(categoryId => console.log(categoryId))
-    )
+        tap(categoryId => {
+          if (categoryId === "all") {
+            this.displayedColumns = [
+              // "id",
+              "name",
+              "category",
+              "price",
+              "cost",
+              "imageURL",
+              "actions"
+            ];
+          } else {
+            this.displayedColumns = [
+              // "id",
+              "name",
+              "price",
+              "cost",
+              "imageURL",
+              "actions"
+            ];
+          }
+        })
+      )
       .subscribe(
         (categoryId: string) =>
           (this.dataSource.data = this.filterByCategory(categoryId))

@@ -58,7 +58,7 @@ var CategoryRouter = (function () {
                 res.status(200).json({ data: data });
             }
             else {
-                res.status(404).send('Category not found');
+                res.status(404).send("Category not found");
             }
         })
             .catch(function (error) {

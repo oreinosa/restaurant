@@ -32,15 +32,17 @@ export class UpdateComponent extends Update<Category> {
     this.upload.onSubmit(this.service.apiRoute).subscribe(
       (imageURL: string) => {
         if (imageURL) {
-          // console.log('new imageURL ', imageURL);
-          const imageCtrl = form.controls.imageURL;
-          imageCtrl.setValue(imageURL); // set imageURL input value to the resolt of the upload POST event
+          form.controls.imageURL.setValue(imageURL);
+        } else {
+          form.controls.imageURL.disable();
         }
         console.log(form.value);
+        // form.reset(form.value);
         super.onSubmit(form);
       },
       (error: HttpErrorResponse) => {
         console.log(error);
+        form.reset(form.value);
       }
     );
   }
