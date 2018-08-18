@@ -39,9 +39,9 @@ class CategoryRouter {
   }
 
   public create(req: Request, res: Response): void {
-    const { name, description, imageURL } = req.body;
+    const { name, imageURL } = req.body;
 
-    if (name && description && imageURL) {
+    if (name && imageURL) {
       const category = new Category(req.body);
       Category.create(category)
         .then((category: ICategory) => {

@@ -12,11 +12,6 @@ var CategorySchema = new mongoose_1.Schema({
     },
     description: {
         type: String,
-        required: true
-    },
-    imageURL: {
-        type: String,
-        required: true
     },
 });
 exports.Category = mongoose_1.model("Category", CategorySchema, "categories");

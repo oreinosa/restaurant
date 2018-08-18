@@ -10,7 +10,6 @@ const ProductSchema: Schema = new Schema({
   },
   description: {
     type: String,
-    required: true
   },
   price: {
     type: Number,
@@ -26,7 +25,7 @@ const ProductSchema: Schema = new Schema({
   },
   category: {
     type: Category.schema,
-    required: false
+    required: true
   }
 });
 

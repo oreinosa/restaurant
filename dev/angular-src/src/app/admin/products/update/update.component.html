@@ -13,7 +13,7 @@
               <input matInput type="text" placeholder='Nombre' [ngModel]='product.name' name='name' required [readonly]='f.submitted'>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder='Descripción' [ngModel]='product.description' name='description' required [readonly]='f.submitted'>
+              <input matInput type="text" placeholder='Descripción' [ngModel]='product.description' name='description' [readonly]='f.submitted'>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="number" placeholder='Precio' [ngModel]='product.price' name='price' required [readonly]='f.submitted'>

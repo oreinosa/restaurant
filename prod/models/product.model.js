@@ -11,7 +11,6 @@ var ProductSchema = new mongoose_1.Schema({
     },
     description: {
         type: String,
-        required: true
     },
     price: {
         type: Number,
@@ -27,7 +26,7 @@ var ProductSchema = new mongoose_1.Schema({
     },
     category: {
         type: category_model_1.Category.schema,
-        required: false
+        required: true
     }
 });
 exports.Product = mongoose_1.model("Product", ProductSchema, "products");

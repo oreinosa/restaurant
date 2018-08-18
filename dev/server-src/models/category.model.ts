@@ -11,11 +11,6 @@ const CategorySchema: Schema = new Schema({
   },
   description: {
     type: String,
-    required: true
-  },
-  imageURL: {
-    type: String,
-    required: true
   },
 });
 

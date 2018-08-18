@@ -34,8 +34,8 @@ var CategoryRouter = (function () {
         });
     };
     CategoryRouter.prototype.create = function (req, res) {
-        var _a = req.body, name = _a.name, description = _a.description, imageURL = _a.imageURL;
-        if (name && description && imageURL) {
+        var _a = req.body, name = _a.name, imageURL = _a.imageURL;
+        if (name && imageURL) {
             var category = new category_model_1.Category(req.body);
             category_model_1.Category.create(category)
                 .then(function (category) {
