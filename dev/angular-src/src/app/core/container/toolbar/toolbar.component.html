@@ -33,9 +33,27 @@
       </ng-container>
     </ng-container>
 
+    <span class="spacer"></span>
+    <ng-container *ngFor='let action of actions'>
+      <!-- ACTIONS ON MD LG XL -->
+      <ng-container *ngIf='(overlay === "md" || overlay === "lg" || overlay === "xl")'>
+        <button class='app-action' mat-button (click)='actionEmitter.emit(action.name)'>
+          <mat-icon *ngIf='action?.icon'>{{ action.icon }}</mat-icon>
+          <ng-container>{{ action.label }}</ng-container>
+        </button>
+      </ng-container>
+
+      <!-- ACTIONS ON XS SM -->
+      <ng-container *ngIf='(overlay === "xs" || overlay === "sm")'>
+        <button class='app-action' mat-icon-button [matTooltip]='action.label' (click)='actionEmitter.emit(action.name)'>
+          <mat-icon *ngIf='action?.icon'>{{ action.icon }}</mat-icon>
+        </button>
+      </ng-container>
+    </ng-container>
+
+
     <!-- WHEN USER IS SIGNED IN -->
     <ng-container *ngIf='user'>
-      <span class="spacer"></span>
       <!-- PROFILE MENU BUTTON ON MD LG XL -->
       <ng-container *ngIf='(overlay === "md" || overlay === "lg" || overlay === "xl")'>
         <button [matMenuTriggerFor]='shoppingCartMenu' class='app-action' mat-button>
@@ -60,7 +78,7 @@
 
       <!-- SHOPPING CART MENU OPTIONS -->
       <mat-menu class='shoppingCartMenu' #shoppingCartMenu="matMenu" xPosition='after' yPosition='below'>
-          <button disabled mat-menu-item class='menu-subheader'>Carrito</button>
+        <button disabled mat-menu-item class='menu-subheader'>Carrito</button>
         <app-shopping-cart-overview></app-shopping-cart-overview>
       </mat-menu>
 

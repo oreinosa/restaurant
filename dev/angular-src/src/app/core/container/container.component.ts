@@ -138,9 +138,6 @@ export class ContainerComponent {
         });
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
-        actions.push(
-          { label: "Carrito", route: "carrito", icon: "add_shopping_cart" },
-        );
         break;
       default:
         actions.push(
