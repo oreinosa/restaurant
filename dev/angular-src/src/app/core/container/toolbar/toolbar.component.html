@@ -55,41 +55,30 @@
     <!-- WHEN USER IS SIGNED IN -->
     <ng-container *ngIf='user'>
       <!-- PROFILE MENU BUTTON ON MD LG XL -->
-      <ng-container *ngIf='(overlay === "md" || overlay === "lg" || overlay === "xl")'>
-        <button [matMenuTriggerFor]='shoppingCartMenu' class='app-action' mat-button>
-          <mat-icon>add_shopping_cart</mat-icon>
-          <ng-container>Carrito</ng-container>
-        </button>
+      <!-- <ng-container *ngIf='(overlay === "md" || overlay === "lg" || overlay === "xl")'>
         <button [matMenuTriggerFor]='profileMenu' class='app-action' mat-button>
           <mat-icon>person_pin</mat-icon>
           <ng-container>Perfil</ng-container>
         </button>
-      </ng-container>
+      </ng-container> -->
 
       <!-- PROFILE MENU BUTTON ON XS SM -->
-      <ng-container *ngIf='(overlay === "xs" || overlay === "sm")'>
-        <button [matMenuTriggerFor]='shoppingCartMenu' class='app-action' mat-icon-button [matTooltip]='Carrito'>
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
-        <button [matMenuTriggerFor]='profileMenu' class='app-action' mat-icon-button [matTooltip]='Perfil'>
+      <!-- <ng-container *ngIf='(overlay === "xs" || overlay === "sm")'>
+        <button [matMenuTriggerFor]='profileMenu' class='app-action' mat-icon-button matTooltip='Perfil'>
           <mat-icon>person_pin</mat-icon>
         </button>
-      </ng-container>
+      </ng-container> -->
 
-      <!-- SHOPPING CART MENU OPTIONS -->
-      <mat-menu class='shoppingCartMenu' #shoppingCartMenu="matMenu" xPosition='after' yPosition='below'>
-        <button disabled mat-menu-item class='menu-subheader'>Carrito</button>
-        <app-shopping-cart-overview></app-shopping-cart-overview>
-      </mat-menu>
 
       <!-- PROFILE MENU OPTIONS -->
-      <mat-menu #profileMenu="matMenu" xPosition='after' yPosition='below'>
+      <!-- <mat-menu #profileMenu="matMenu" xPosition='after' yPosition='below'>
         <button disabled mat-menu-item class='menu-subheader'>{{ user.name }}</button>
         <button mat-menu-item [routerLink]='["perfil", "personal"]' routerLinkActive='active'>
           <mat-icon>person_pin</mat-icon>
           Mi información personal
         </button>
-      </mat-menu>
+      </mat-menu> -->
+
       <!-- SIGN OUT -->
       <button mat-icon-button matTooltip='Cerrar sesión' matTooltipPosition='below' (click)='actionEmitter.emit("cerrar-sesion")'>
         <mat-icon>exit_to_app</mat-icon>

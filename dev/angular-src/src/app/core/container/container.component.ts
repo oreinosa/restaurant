@@ -75,7 +75,9 @@ export class ContainerComponent {
     this.auth.user
       .pipe(
         // filter(user => !!user),
-        tap((user: User) => this.updateRouting(user ? user.role : "not-signed-in"))
+        tap((user: User) =>
+          this.updateRouting(user ? user.role : "not-signed-in")
+        )
       )
       .subscribe(user => (this.user = user));
   }
@@ -124,11 +126,14 @@ export class ContainerComponent {
     switch (role) {
       case "Admin":
         links.push({
-          label: "Admin", route: "admin", icon: "build", children: [
+          label: "Admin",
+          route: "admin",
+          icon: "build",
+          children: [
             { label: "Usuarios", route: "usuarios", icon: "people" },
             { label: "Categorías", route: "categorias", icon: "category" },
             { label: "Productos", route: "productos", icon: "fastfood" },
-            { label: "Combos", route: "combos", icon: "restaurant_menu" },
+            { label: "Combos", route: "combos", icon: "restaurant_menu" }
           ]
         });
         links.push({
@@ -138,6 +143,7 @@ export class ContainerComponent {
         });
       // tslint:disable-next-line:no-switch-case-fall-through
       case "Cliente":
+        actions.push({ label: "Perfil", name: "perfil", icon: "person_pin" });
         break;
       default:
         actions.push(

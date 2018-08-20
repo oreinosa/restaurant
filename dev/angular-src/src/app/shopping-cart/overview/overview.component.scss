@@ -1,32 +1,17 @@
-.mat-card{
+.shopping-cart-overview {
   height: 100%;
-  padding: 0;
+  padding: 10px;
   // padding-top: 10px;
-  .mat-card-title{
-    padding: 0 10px;
-  }
-  .table-container{
-    width:100%;
-    .mat-table{
-      // .mat-header-cell, 
-      // .mat-header-cell button,
+
+  .table-container {
+    // width: 100%;
+    table {
       .mat-footer-cell,
       .mat-cell {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        padding: 5px;
       }
-      .mat-footer-cell{
+      .mat-footer-cell {
         font-weight: bolder;
-      }
-      .mat-column-name{
-        width:50%;
-      }
-      .mat-column-amount{
-        width:25%;
-      }
-      .mat-column-subtotal{
-        width:25%;
       }
     }
   }

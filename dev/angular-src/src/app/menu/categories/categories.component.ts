@@ -1,31 +1,21 @@
-import { CategoriesService } from './../../admin/categories/categories.service';
-import { Category } from './../../shared/models/category';
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Category } from "./../../shared/models/category";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-menu-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: "app-menu-categories",
+  templateUrl: "./categories.component.html",
+  styleUrls: ["./categories.component.scss"]
 })
 export class CategoriesComponent implements OnInit {
+  @Input()
   categories: Category[];
-  @Input() onlyName = false;
-  @Input() hideCategories = false;
-  @Input() listView = false;
-  
-  constructor(
-    private categoriesService: CategoriesService,
-    private router: Router
-  ) { }
+  @Input()
+  onlyName = false;
+  @Input()
+  hideCategories = false;
 
-  ngOnInit() {
-    this.categoriesService.all().subscribe(categories => this.categories = categories);
-  }
+  constructor() {}
 
-  onNavigate(categoryName: string) {
-    let dashesCategory = categoryName.trim().replace(/\s+/g, "-").toLowerCase();
-    this.router.navigate(['menu', dashesCategory])
-  }
+  ngOnInit() {}
 
 }

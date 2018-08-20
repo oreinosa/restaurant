@@ -1,4 +1,3 @@
-import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -12,6 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { CoreModule } from "./core/core.module";
 import { NotificationsModule } from "./notifications/notifications.module";
+// import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+// import { QuickActionsModule } from "./quick-actions/quick-actions.module";
 
 import { AuthModule } from "./auth/auth.module";
 import { AuthService } from "./auth/auth.service";
@@ -49,7 +50,8 @@ export function tokenGetter() {
     CoreModule,
     AuthModule,
     MenuModule,
-    ShoppingCartModule,
+    // QuickActionsModule,
+    // ShoppingCartModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

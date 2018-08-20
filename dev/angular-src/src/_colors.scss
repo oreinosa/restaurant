@@ -49,7 +49,16 @@ $danger-dark: mat-color($app-danger-dark);
 }
 .bg-primary {
   background-color: $primary !important;
-  color: white!important;
+  color: white !important;
+}
+button.bg-primary:hover,
+button.bg-primary:active,
+button.bg-primary:focus,
+a.bg-primary:hover,
+a.bg-primary:active,
+a.bg-primary:focus {
+  background-color: $primary-light !important;
+  color: white !important;
 }
 .bg-primary-dark {
   background-color: $primary-dark !important;

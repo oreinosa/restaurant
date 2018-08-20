@@ -1,4 +1,4 @@
-import { ShoppingCartModule } from './../shopping-cart/shopping-cart.module';
+// import { ShoppingCartModule } from './../shopping-cart/shopping-cart.module';
 import { NgModule } from "@angular/core";
 import { SharedModule } from "../shared/shared.module";
 import { ContainerComponent } from "./container/container.component";
@@ -20,7 +20,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RouterModule,
     MatToolbarModule,
     MatSidenavModule,
-    ShoppingCartModule,
+    // ShoppingCartModule,
     CoreRoutingModule
   ],
   exports: [ContainerComponent],

@@ -1,27 +1,20 @@
 <div class="row">
-  <div class="col-12 col-sm-5 col-md-4 mb-2">
-    <app-menu-categories [listView]='true'></app-menu-categories>
-    <hr>
-    <app-menu-featured [listView]='true'></app-menu-featured>
-  </div>
-  <div class="col-12 col-sm-7 col-md-8">
-    <div class="row">
-      <div class="col-12 mb-2">
-        <mat-card>
-          <mat-card-content>
-            <h1 class='text-center selected-category'>
-              <span class='selected-category-name'>{{ category | capitalize }}</span>
-            </h1>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-12">
-        <div class="row">
-          <div class="product-container col-12 col-sm-6 col-md-4 my-3" *ngFor='let product of products'>
-            <app-menu-product-overview [product]='product' [byCategory]='true' (added)='onAddItem($event)'></app-menu-product-overview>
-          </div>
-        </div>
-      </div>
+  <ng-container *ngIf='products.length;else noProducts'>
+    <div class="product-container col-12 col-md-6 col-lg-4 my-3" *ngFor='let product of products'>
+      <app-menu-product-overview [product]='product' [byCategory]='byCategory'></app-menu-product-overview>
     </div>
-  </div>
+  </ng-container>
+  <!-- IF NO PRODUCTS -->
+  <ng-template #noProducts>
+    <div class="col-12">
+      <mat-card>
+        <mat-card-content>
+          <!-- HINT IF SEARCHING FOR CATEGORY OR BY NAME -->
+          <h4 class="text-center">
+            No se encontró ningún producto
+          </h4>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
 </div>
